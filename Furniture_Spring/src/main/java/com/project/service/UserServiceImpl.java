@@ -4,16 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dao.UserDao;
-import com.project.model.Address;
-import com.project.model.BufCart;
-import com.project.model.Cart;
-import com.project.model.OrderPlaced;
-import com.project.model.Product;
-import com.project.model.User;
+import com.hiber.model.*;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	UserDao userDao;
@@ -50,11 +47,7 @@ public class UserServiceImpl implements UserService {
 		userDao.addAddress(addr);
 	}
 
-	@Override
-	public void updateAddress(Address addr) {
-		// TODO Auto-generated method stub
-		userDao.updateAddress(addr);
-	}
+
 
 	@Override
 	public Address getAddress(String email) {
@@ -63,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addToCart(BufCart bufcart) {
+	public void addToCart(Bufcart bufcart) {
 		// TODO Auto-generated method stub
 		userDao.addToCart(bufcart);
 	}
@@ -77,23 +70,15 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public List<BufCart> listAllBufCart(String email) {
+	public List<Bufcart> listAllBufCart(String email) {
 		// TODO Auto-generated method stub
 		return userDao.listAllBufCart(email);
 	}
 
-
 	@Override
-	public void updateQuantity(String productId, String quantity,String email) {
+	public void removeItem(int bufcartId) {
 		// TODO Auto-generated method stub
-		userDao.updateQuantity(productId, quantity, email);
-	}
-
-
-	@Override
-	public void removeItem(String productId, String email) {
-		// TODO Auto-generated method stub
-		userDao.removeItem(productId, email);
+		userDao.removeItem(bufcartId);
 	}
 
 
@@ -103,16 +88,8 @@ public class UserServiceImpl implements UserService {
 		userDao.placeOrder(opd);
 	}
 
-
 	@Override
-	public void addCartOrder(Cart cart) {
-		// TODO Auto-generated method stub
-		userDao.addCartOrder(cart);
-	}
-
-
-	@Override
-	public User findAdminBy(String email) {
+	public Admin findAdminBy(String email) {
 		// TODO Auto-generated method stub
 		return userDao.findAdminBy(email);
 	}
@@ -126,7 +103,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public List<User> listAllAdmin() {
+	public List<Admin> listAllAdmin() {
 		// TODO Auto-generated method stub
 		return userDao.listAllAdmin();
 	}

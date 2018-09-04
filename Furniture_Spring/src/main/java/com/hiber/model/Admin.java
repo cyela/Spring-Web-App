@@ -1,11 +1,18 @@
-package com.project.model;
+package com.hiber.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
 
-public class User implements Serializable{
-	private String firstName,lastName,email,password,salt,gender;
-	private String phonenumber,DOB;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Admin {
+	
+	@Id
+	private String email;
+	private String firstName,lastName,password,salt,gender;
+	private String phonenumber,birthdate;
 	Blob image;
 
 	
@@ -67,11 +74,11 @@ public class User implements Serializable{
 	}
 
 	public String getDOB() {
-		return DOB;
+		return birthdate;
 	}
 
 	public void setDOB(String dOB) {
-		DOB = dOB;
+		birthdate = dOB;
 	}
 
 	public String getPhonenumber() {
@@ -82,19 +89,19 @@ public class User implements Serializable{
 		this.phonenumber = phonenumber;
 	}
 
-	public User(String email) {
+	public Admin(String email) {
 		super();
 		this.email = email;
 	}
 
-	public User() {
+	public Admin() {
 		super();
 	}
 
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password
-				+ ", salt=" + salt + ", gender=" + gender + ", phonenumber=" + phonenumber + ", DOB=" + DOB + "]";
+				+ ", salt=" + salt + ", gender=" + gender + ", phonenumber=" + phonenumber + ", DOB=" + birthdate + "]";
 	}
 
 	

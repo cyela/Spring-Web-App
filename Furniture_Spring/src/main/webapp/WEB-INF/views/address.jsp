@@ -54,26 +54,26 @@ if(session.getAttribute("user")==null){
               <div class="form-group">
                   <label class="control-label col-sm-2" for="address">Address: </label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control" name="address"  value="${addressex.address}" /><br>
+                  <form:input type="text" class="form-control" name="address" path="address" /><br>
                 </div>
               </div>
               <div class="form-group">
       			      <label class="control-label col-sm-2" for="city">City: </label>
       	  			  <div class="col-sm-3">
-      				        <input type="text" class="form-control" name="city" value="${addressex.city}"/><br>
+      				        <form:input type="text" class="form-control" name="city" path="city"  /><br>
       				   </div>
   			      </div>
   			    <div class="form-group">
     			      <label class="control-label col-sm-2" for="state">State: </label>
     	  			  <div class="col-sm-3">
-    				        <input type="text" class="form-control" name="state" value="${addressex.state}"/><br>
+    				        <form:input type="text" class="form-control" name="state" path="state"  /><br>
     				   </div>
   			    </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="zipcode">Zipcode: </label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="zipcode" value="${addressex.zipcode}"/><br>
-                    <input type="hidden" class="form-control" name="email" value="${useremail}"/>
+                    <form:input type="text" class="form-control" name="zipcode" path="zipcode"  /><br>
+                    <form:input type="hidden" class="form-control" name="email" path="email"  />
                     
                </div>
             </div>

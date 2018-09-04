@@ -1,38 +1,45 @@
-package com.project.model;
+package com.hiber.model;
 
 import java.io.Serializable;
 
-public class Address implements Serializable{
-String address, city, state, zipcode;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-String email;
+@Entity
+public class Address{
+	
+
+	@Id
+	private String email;
 
 public String getEmail() {
-	return email;
-}
+		return email;
+	}
 
-public Address(String address, String city, String state, String zipcode, String email) {
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+private String address;
+private String city, state, zipcode;
+
+
+
+public Address(String address, String city, String state, String zipcode) {
 	super();
 	this.address = address;
 	this.city = city;
 	this.state = state;
 	this.zipcode = zipcode;
-	this.email = email;
 }
 
-public Address(String email) {
-	super();
-	this.email = email;
-}
 
 @Override
 public String toString() {
 	return "Address [address=" + address + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + ", email="
-			+ email + "]";
-}
-
-public void setEmail(String email) {
-	this.email = email;
+			 + "]";
 }
 
 public Address() {
@@ -70,5 +77,6 @@ public String getZipcode() {
 public void setZipcode(String zipcode) {
 	this.zipcode = zipcode;
 }
+
 
 }

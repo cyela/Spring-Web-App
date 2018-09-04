@@ -1,9 +1,38 @@
-package com.project.model;
+package com.hiber.model;
 
 import java.io.Serializable;
 
-public class BufCart implements Serializable{
-String ProductId,ProductName, email, DateAdded,quantity,price;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Bufcart {
+
+@Id
+private int bufcartId;
+
+@Column(nullable = true)
+private int orderId;
+public int getOrderId() {
+	return orderId;
+}
+
+public int getBufcartId() {
+	return bufcartId;
+}
+
+public void setBufcartId(int bufcartId) {
+	this.bufcartId = bufcartId;
+}
+
+private String ProductId,ProductName, email, DateAdded,quantity,price;
+
+public void setOrderId(int orderId) {
+	this.orderId = orderId;
+}
 
 public String getProductName() {
 	return ProductName;
@@ -57,7 +86,7 @@ public void setDateAdded(String dateAdded) {
 
 
 
-public BufCart(String productId, String productName, String email, String dateAdded, String quantity, String price) {
+public Bufcart(String productId, String productName, String email, String dateAdded, String quantity, String price) {
 	super();
 	ProductId = productId;
 	ProductName = productName;
@@ -67,11 +96,11 @@ public BufCart(String productId, String productName, String email, String dateAd
 	this.price = price;
 }
 
-public BufCart() {
+public Bufcart() {
 	super();
 }
 
-public BufCart(String email) {
+public Bufcart(String email) {
 	super();
 	this.email = email;
 }

@@ -1,12 +1,19 @@
-package com.project.model;
+package com.hiber.model;
 
 import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-public class Product implements Serializable{
-	String productId,description,productname,
+
+@Entity
+public class Product {
+	
+	@Id
+	String productId;
+	String description,productname,
 	productprice,quantity;
 	
 

@@ -23,14 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.model.Address;
-import com.project.model.BufCart;
-import com.project.model.Cart;
-import com.project.model.OrderPlaced;
-import com.project.model.PasswordUtil;
-import com.project.model.Product;
-import com.project.model.User;
+import com.hiber.model.*;
 import com.project.service.UserService;
+import com.project.util.PasswordUtil;
 
 @Controller
 @RequestMapping(value="/user")
@@ -55,7 +50,7 @@ public class HomeController {
 	@RequestMapping(value="/logincheck",method=RequestMethod.POST)
 	public ModelAndView validateLogin(@ModelAttribute("userloginform") User user,HttpSession session) throws NoSuchAlgorithmException {
 		List<User> AllUser=userService.listAllUser();
-		List<User> AllAdmin=userService.listAllAdmin();
+		List<Admin> AllAdmin=userService.listAllAdmin();
 		boolean index=false;
 		for(int i=0;i<AllUser.size();i++) {
 			if(AllUser.get(i).getEmail().equals(user.getEmail())) {
@@ -70,11 +65,11 @@ public class HomeController {
 				}
 			}
 			if(indexsec) {
-				User userfa=userService.findAdminBy(user.getEmail());
+				Admin userfa=userService.findAdminBy(user.getEmail());
 				if(userfa.getPassword().equals(user.getPassword())) {
 					ModelAndView model=new ModelAndView("adminPage");
 					List<Product> list=userService.listAllProducts();
-					System.out.println(list.toString());
+					//System.out.println(list.toString());
 					Product prod=new Product();
 					model.addObject("productform",prod);
 					model.addObject("useremail",user.getEmail());
@@ -150,7 +145,8 @@ public class HomeController {
 	public ModelAndView addressChange(HttpSession session) {
 		
 		ModelAndView model=new ModelAndView("address");
-		Address addr=new Address();
+		Address addr=userService.getAddress(session.getAttribute("user").toString());
+		System.out.println(addr.toString());
 		model.addObject("useremail",session.getAttribute("user"));
 		model.addObject("addressform",addr);
 		return model;
@@ -174,7 +170,7 @@ public class HomeController {
 			
 			ModelAndView model=new ModelAndView("userPage");
 			List<Product> list=userService.listAllProducts();
-			BufCart buf=new BufCart();
+			Bufcart buf=new Bufcart();
 			buf.setProductId(prodId);
 			Product prod=userService.getProduct(prodId);
 			buf.setProductName(prod.getProductname());
@@ -182,6 +178,7 @@ public class HomeController {
 			String email=(String) session.getAttribute("user");
 			buf.setEmail(email);
 			buf.setQuantity("1");
+			buf.setOrderId(0);
 			userService.addToCart(buf);
 			model.addObject("useremail",session.getAttribute("user"));
 			model.addObject("listProduct",list);
@@ -197,7 +194,7 @@ public class HomeController {
 			
 			ModelAndView model=new ModelAndView("viewcart");
 			String email=(String) session.getAttribute("user");
-			List<BufCart> list=userService.listAllBufCart(email);
+			List<Bufcart> list=userService.listAllBufCart(email);
 			model.addObject("listBufcart",list);
 			return model;
 			
@@ -209,10 +206,15 @@ public class HomeController {
 		public ModelAndView updateQuantity(@RequestParam("newquantity") String quantity,@RequestParam("newprodId") String productId ,HttpSession session) {
 			
 			String email=(String) session.getAttribute("user");
-			System.out.println(quantity+","+productId+","+email);
-			userService.updateQuantity(productId, quantity, email);
 			ModelAndView model=new ModelAndView("viewcart");
-			List<BufCart> list=userService.listAllBufCart(email);
+			List<Bufcart> list=userService.listAllBufCart(email);
+			list.forEach(buf->{
+				if(buf.getEmail().equals(email) && buf.getProductId().equals(productId)) {
+					Bufcart bufcart=buf;
+					bufcart.setQuantity(quantity);
+					userService.addToCart(bufcart);
+				}
+			});
 			model.addObject("listBufcart",list);
 			return model;
 			
@@ -224,9 +226,14 @@ public class HomeController {
 		public ModelAndView removeItem(@RequestParam("newdelprodId") String productId ,HttpSession session) {
 			
 			String email=(String) session.getAttribute("user");
-			userService.removeItem(productId, email);
 			ModelAndView model=new ModelAndView("viewcart");
-			List<BufCart> list=userService.listAllBufCart(email);
+			
+			userService.listAllBufCart(email).forEach(buf->{
+				if(buf.getEmail().equals(email) && buf.getProductId().equals(productId)) {
+					userService.removeItem(buf.getBufcartId());
+				}
+			});
+			List<Bufcart> list=userService.listAllBufCart(email);
 			model.addObject("listBufcart",list);
 			return model;
 			
@@ -238,12 +245,12 @@ public class HomeController {
 		public ModelAndView placeOrder(HttpSession session) {
 			
 			String email=(String) session.getAttribute("user");
-			List<BufCart> list=userService.listAllBufCart(email);
+			List<Bufcart> list=userService.listAllBufCart(email);
 			
 			Random rand = new Random();
 			OrderPlaced opd=new OrderPlaced();
-			String orderid=Integer.toString(rand.nextInt(10000));
-			opd.setOrderId(orderid);
+			int orderId=rand.nextInt(10000);
+			opd.setOrderId(orderId);
 			opd.setEmail(email);
 			int tosum=0;
 			for(int i=0;i<list.size();i++) {
@@ -257,18 +264,12 @@ public class HomeController {
 			opd.setOrderDate( dateFormat.format(date));
 			opd.setOrderStatus("Pending");
 			userService.placeOrder(opd);
-	
-			for(int i=0;i<list.size();i++) {
-				Cart cart=new Cart();
-				cart.setProductId(list.get(i).getProductId());
-				cart.setQuantity(list.get(i).getQuantity());
-				cart.setDateAdded(dateFormat.format(date));
-				cart.setOrderId(orderid);
-				cart.setPrice(list.get(i).getPrice());
-				userService.addCartOrder(cart);
-				userService.removeItem(list.get(i).getProductId(), email);
-				
-			}
+			list.forEach(action->{
+				action.setOrderId(orderId);
+				userService.addToCart(action);
+			});
+			
+			
 			
 			return new ModelAndView("redirect:/user/home");
 			
