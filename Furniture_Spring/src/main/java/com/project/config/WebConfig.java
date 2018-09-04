@@ -2,9 +2,13 @@ package com.project.config;
 
 
 
+import java.util.Properties;
+
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +16,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiTemplate;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -21,24 +29,53 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
+@EnableTransactionManagement
 @ComponentScan(basePackages="com.project")
 public class WebConfig extends WebMvcConfigurerAdapter{
-	@Autowired
+	/*@Autowired
 	DataSource dataSource;
 	
 	@Bean
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
 		return new NamedParameterJdbcTemplate(dataSource);
+	}*/
+	
+	// Hibernate with localSessionFactory
+	@Bean
+    public LocalSessionFactoryBean getSessionFactory() throws NamingException {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(getDataSource());
+        sessionFactory.setPackagesToScan(new String[]{"com.hiber.model"});
+        sessionFactory.setHibernateProperties(hibernateProperties());
+        return sessionFactory;
+    }
+	@Bean
+	@Autowired
+	public PlatformTransactionManager transactionManager(SessionFactory s) {
+	   HibernateTransactionManager txManager = new HibernateTransactionManager();
+	   txManager.setSessionFactory(s);
+	   return txManager;
 	}
 	
+	Properties hibernateProperties() {
+        return new Properties() {
+            {
+                setProperty("hibernate.hbm2ddl.auto", "update");
+                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+                //setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+                setProperty("hibernate.show_sql", "true");
+            }
+        };
+    }
 	@Bean
 	public DataSource getDataSource() throws NamingException {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/muscle");
-        dataSource.setUsername("root");
-        dataSource.setPassword("Telugu@1");
-		return dataSource;
+
+		 BasicDataSource dataSource = new BasicDataSource();
+       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+       dataSource.setUrl("jdbc:mysql://localhost:3306/spring");
+       dataSource.setUsername("root");
+       dataSource.setPassword("root");
+		 return dataSource;
 	}
 
 	@Override

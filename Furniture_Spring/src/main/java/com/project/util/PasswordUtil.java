@@ -1,4 +1,4 @@
-package com.project.model;
+package com.project.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

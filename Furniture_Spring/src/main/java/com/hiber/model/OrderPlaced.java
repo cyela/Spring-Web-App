@@ -1,16 +1,22 @@
-package com.project.model;
+package com.hiber.model;
 
 import java.io.Serializable;
 
-public class OrderPlaced implements Serializable{
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-	String orderId,email,totalCost,orderDate,orderStatus;
+@Entity
+public class OrderPlaced {
+	
+	@Id
+	private int orderId;
+	private String email,totalCost,orderDate,orderStatus;
 
-	public String getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
@@ -46,7 +52,7 @@ public class OrderPlaced implements Serializable{
 		this.orderStatus = orderStatus;
 	}
 
-	public OrderPlaced(String orderId, String email, String totalCost, String orderDate, String orderStatus) {
+	public OrderPlaced(int orderId, String email, String totalCost, String orderDate, String orderStatus) {
 		super();
 		this.orderId = orderId;
 		this.email = email;
