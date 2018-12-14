@@ -3,20 +3,19 @@
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>View Cart </title>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link id="bootstrap-css"  rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet"  href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<title>View Cart </title>
 </head>
 <body>
+
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
@@ -39,11 +38,11 @@
 
     
     <p> Click to continue your shopping</p>
-	<br>
+	<br >
 	<spring:url value="/user/home" var="homeURL" ></spring:url>
-    <a href="${homeURL}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-    <p> To change Quantity, Edit Quantity and Click on Update button</p>
-	<table id="cart" class="table table-hover table-condensed">
+	<a class="btn btn-primary" href="${homeURL}"><i class="fa fa-angle-left">Continue Shopping</i></a>
+	<p> To change Quantity, Edit Quantity and Click on Update button</p>
+   <table id="cart" class="table table-hover table-condensed">
  		<thead>
 			<tr>
 				<th style="width:50%">Product</th>
@@ -85,16 +84,20 @@
 															      </script>
 				      </td>
       				  <td class="actions" data-th="">
-                      <input type="hidden" name="newprodId" value="${prod.productId}" />
+      				  	<input type="hidden" name="newprodId" value="${prod.productId}" />
                       <input type="submit" name="submit" class="btn btn-info btn-sm" value="update" />
-
-               </form:form>
-                <spring:url value="/user/removeItem" var="delURL" />
-                 <form:form  method="POST" action="${delURL}">
-                 		 <input type="hidden" name="newdelprodId" value="${prod.productId}" />
+                   </td>
+                   
+		        </form:form>
+		        <td>
+	               <spring:url value="/user/removeItem" var="delURL" />
+	                <form:form  method="POST" action="${delURL}">
+	                		 <input type="hidden" name="newdelprodId" value="${prod.productId}" />
 						 <input type="submit" name="submit" class="btn btn-info btn-sm" value="delete " />
-                 </form:form>	
-				</td>
+	                </form:form>
+      			</td>  
+                      	
+				
 			</tr>
 		 </c:forEach>
 		</tbody>

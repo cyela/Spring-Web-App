@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -39,7 +39,8 @@
         	        <div class=" col-sm-4 col-md-24">
         	        
             			      <form:input type="text" class="form-control"  path="productname" value="${selproduct.productname}"/><br>
-            			      <form:textarea rows="5" class="form-control" path="description" value="${selproduct.description}" placeholder="${selproduct.description}"/></textarea><br>
+            			      <form:textarea rows="5" class="form-control" path="description" value="${selproduct.description}" placeholder="${selproduct.description}"/>
+            			      <br>
             			      <form:input type="number" class="form-control" path="productprice" value="${selproduct.productprice}"/><br>
             			      <form:input type="number" class="form-control" path="quantity"  value="${selproduct.quantity}"/><br>
             			      <form:input type="hidden" class="form-control"  path="productId" value="${selproduct.productId}"/>

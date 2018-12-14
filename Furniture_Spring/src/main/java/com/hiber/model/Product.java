@@ -1,8 +1,5 @@
 package com.hiber.model;
 
-import java.io.InputStream;
-import java.io.Serializable;
-import java.sql.Blob;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

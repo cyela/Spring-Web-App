@@ -1,22 +1,11 @@
 package com.project.dao;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.project.dao.UserDao;
@@ -61,9 +50,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();
 		String hql = "FROM User WHERE email ='"+email+"'";
-		
-		Query query = session.createQuery(hql);
-		User results = (User) query.getSingleResult();
+		User results = (User) session.createQuery(hql).getSingleResult();
 		return results;
 	}
 
@@ -72,9 +59,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();
 		String hql = "FROM Admin WHERE email ='"+email+"'";
-		
-		Query query = session.createQuery(hql);
-		Admin results = (Admin) query.getSingleResult();
+		Admin results = (Admin) session.createQuery(hql).getSingleResult();
 		return results;
 	}
 
@@ -123,9 +108,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();
 		String hql = "FROM Product WHERE productId ="+prodId;
-		
-		Query query = session.createQuery(hql);
-		Product results = (Product) query.getSingleResult();
+		Product results = (Product) session.createQuery(hql).getSingleResult();
 		return results;
 	}
 
@@ -163,9 +146,8 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();
 		String hql = "FROM Bufcart WHERE email ='"+email+"'";
-		
-		Query query = session.createQuery(hql);
-		List<Bufcart> results =  query.list();
+		@SuppressWarnings("unchecked")
+		List<Bufcart> results =(List<Bufcart>) session.createQuery(hql).list();
 		return results;
 	}
 

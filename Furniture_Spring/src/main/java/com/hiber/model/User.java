@@ -1,12 +1,9 @@
 package com.hiber.model;
 
-import java.io.Serializable;
 import java.sql.Blob;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User {

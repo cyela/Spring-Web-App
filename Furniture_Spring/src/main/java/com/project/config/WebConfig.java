@@ -13,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -59,7 +56,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	Properties hibernateProperties() {
         return new Properties() {
-            {
+			{
                 setProperty("hibernate.hbm2ddl.auto", "update");
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 //setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
@@ -70,11 +67,11 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public DataSource getDataSource() throws NamingException {
 
-		 BasicDataSource dataSource = new BasicDataSource();
+		BasicDataSource dataSource = new BasicDataSource();
        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
        dataSource.setUrl("jdbc:mysql://localhost:3306/spring");
        dataSource.setUsername("root");
-       dataSource.setPassword("root");
+       dataSource.setPassword("Telugu@1");
 		 return dataSource;
 	}
 
@@ -100,12 +97,5 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	  public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/").setViewName("index");
 	  }
-	
-	
-	
-	
-	
-	
-	
 	
 }

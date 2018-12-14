@@ -7,19 +7,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,8 +77,7 @@ public class HomeController {
 			}
 		}else {
 			User userf=userService.findUserBy(user.getEmail());
-			PasswordUtil putil=new PasswordUtil();
-			if(putil.hashAndSaltPassword(user.getPassword(),userf.getSalt()).equals(userf.getPassword())) {
+			if(PasswordUtil.hashAndSaltPassword(user.getPassword(),userf.getSalt()).equals(userf.getPassword())) {
 	
 				ModelAndView model=new ModelAndView("userPage");
 				List<Product> list=userService.listAllProducts();
@@ -133,12 +129,8 @@ public class HomeController {
 	// ====================REGESTERING DETAILS AND REDIRECTING TO WEBSITE HOME PAGE=========================//
 	@RequestMapping(value="/savedetails",method=RequestMethod.POST)
 	public ModelAndView addUser(@ModelAttribute("usersignform") User user) {
-		
-		ModelAndView model=new ModelAndView("signup");
-		//saving user details in database
 		userService.addUser(user);
 		return new ModelAndView("redirect:/user/login");
-		
 	}
 	// =====================NAVIGATING TO ADDRESS EDIT PAGE=============================================// 
 	@RequestMapping(value="/address",method=RequestMethod.GET)
@@ -156,12 +148,8 @@ public class HomeController {
 	//===================UPDATING ADDRESS AND REDIRECTING TO USER HOME PAGE=============================//
 		@RequestMapping(value="/addresschange",method=RequestMethod.POST)
 		public ModelAndView addressChange(@ModelAttribute("addressform") Address addr) {
-			
-			ModelAndView model=new ModelAndView("signup");
-			//saving user details in database
 			userService.addAddress(addr);
 			return new ModelAndView("redirect:/user/home");
-			
 		}
 	
 		// ==================ADDING PRODUCT TO CART==============================================//
