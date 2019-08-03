@@ -13,8 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse">
-
-  <div class="container-fluid">
+  <div class="container-fluid"> 
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Furniture Mart</a>
     </div>
@@ -24,28 +23,26 @@
     </ul>
    </div>
 </nav>
-		<spring:url value="/user/logincheck" var="loginURL" />
-		<form:form class="form-horizontal" modelAttribute="userloginform" method="POST" action="${loginURL}">
-				<div class="form-group">
-			      <label class="control-label col-sm-2" for="email">User Name:</label>
-			      <div class="col-sm-2">
-			        <form:input type="email" class="form-control" path="email"/><br>
-			      </div>
-			    </div>
-				<div class="form-group">
-			      <label class="control-label col-sm-2" for="email">Password:</label>
-			      <div class="col-sm-2">
-			        <form:input type="password" class="form-control" path="password"/><br>
-			       
-			      </div>
-			    </div>  
-				<div class="form-group">        
-			      <div class="col-sm-offset-2 col-sm-10">
-			        <input type="submit"  value="Login" class="btn btn-default">
-			      </div>
-			    </div>    
-				
-				    
-		</form:form>
+<spring:url value="/user/logincheck" var="loginURL" />
+<form:form class="form-horizontal" modelAttribute="userloginform" method="POST" action="${loginURL}">
+		<div class="form-group">
+	      <label class="control-label col-sm-2" for="email">User Name:</label>
+	      <div class="col-sm-2">
+	        <form:input type="email" class="form-control" path="email"/><br>
+	      </div>
+	    </div>
+		<div class="form-group">
+	      <label class="control-label col-sm-2" for="email">Password:</label>
+	      <div class="col-sm-2">
+	        <form:input type="password" class="form-control" path="password"/><br>
+	       
+	      </div>
+	    </div>  
+		<div class="form-group">        
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <input type="submit"  value="Login" class="btn btn-default">
+	      </div>
+	    </div>    
+</form:form>
 </body>
 </html>

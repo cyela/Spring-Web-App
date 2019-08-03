@@ -12,7 +12,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
+ 
     <servlet-mapping>
         <servlet-name>first-web</servlet-name>
         <url-pattern>/user</url-pattern>

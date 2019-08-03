@@ -7,14 +7,17 @@ import javax.persistence.Id;
 
 @Entity
 public class Admin {
-	
+
 	@Id
 	private String email;
-	private String firstName,lastName,password,salt,gender;
-	private String phonenumber,birthdate;
-	Blob image;
-
-	
+	private String firstName;
+	private String lastName;
+	private String password;
+	private String salt;
+	private String gender;
+	private String phonenumber;
+	private String birthdate;
+	private Blob image;
 
 	public Blob getImage() {
 		return image;
@@ -103,10 +106,4 @@ public class Admin {
 				+ ", salt=" + salt + ", gender=" + gender + ", phonenumber=" + phonenumber + ", DOB=" + birthdate + "]";
 	}
 
-	
-
-	
-
-	
-	
 }

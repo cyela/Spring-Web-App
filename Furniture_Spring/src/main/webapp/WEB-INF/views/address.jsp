@@ -1,7 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -20,14 +19,13 @@ response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
 
 if(session.getAttribute("user")==null){
-	response.sendRedirect("${loginrURL}");
+	response.sendRedirect("${loginrURL}"); 
 }
 %>
 </head>
 <body >
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-
       <ul class="nav navbar-nav">
      		<spring:url value="/user/home" var="homeURL"></spring:url>
 		    <li><a href="${homeURL}">Home</a></li>
@@ -40,16 +38,13 @@ if(session.getAttribute("user")==null){
 			
 			<spring:url value="/user/logout" var="logURL"></spring:url>
 		    <li><a href="${logURL}" style="float:right">Log out</a></li>  
-    </ul>
+      </ul>
     </div>
-  
 </nav>
-
 <div class="container">
        <div class="form-container">
        <spring:url value="/user/addresschange" var="addrURL" />
 		<form:form class="form-horizontal" modelAttribute="addressform" method="POST" action="${addrURL}">
-         
               <h2>Please provide us your location</h2><hr />
               <div class="form-group">
                   <label class="control-label col-sm-2" for="address">Address: </label>
@@ -58,43 +53,37 @@ if(session.getAttribute("user")==null){
                 </div>
               </div>
               <div class="form-group">
-      			      <label class="control-label col-sm-2" for="city">City: </label>
-      	  			  <div class="col-sm-3">
-      				        <form:input type="text" class="form-control" name="city" path="city"  /><br>
-      				   </div>
-  			      </div>
-  			    <div class="form-group">
-    			      <label class="control-label col-sm-2" for="state">State: </label>
-    	  			  <div class="col-sm-3">
-    				        <form:input type="text" class="form-control" name="state" path="state"  /><br>
-    				   </div>
-  			    </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="zipcode">Zipcode: </label>
-                <div class="col-sm-3">
-                    <form:input type="text" class="form-control" name="zipcode" path="zipcode"  /><br>
-                    <form:input type="hidden" class="form-control" name="email" path="email"  />
-                    
-               </div>
-            </div>
-
-
+   			      <label class="control-label col-sm-2" for="city">City: </label>
+   	  			  <div class="col-sm-3">
+   				        <form:input type="text" class="form-control" name="city" path="city"  /><br>
+   				   </div>
+		      </div>
+ 			  <div class="form-group">
+   			      <label class="control-label col-sm-2" for="state">State: </label>
+   	  			  <div class="col-sm-3">
+   				        <form:input type="text" class="form-control" name="state" path="state"  /><br>
+   				   </div>
+ 			  </div>
+	            <div class="form-group">
+	                <label class="control-label col-sm-2" for="zipcode">Zipcode: </label>
+	                <div class="col-sm-3">
+	                    <form:input type="text" class="form-control" name="zipcode" path="zipcode"  /><br>
+	                    <form:input type="hidden" class="form-control" name="email" path="email"  />
+	                    
+	               </div>
+	            </div>
                 <div class="clearfix"></div><hr />
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-2">
-
-                 <button type="submit" class="btn btn-block btn-primary" name="signup">
-                    Update
+	                 <button type="submit" class="btn btn-block btn-primary" name="signup">
+	                    Update
                     </button>
                   </div>
               </div>
               <br>
-
         </form:form>
          </div>
   </div>
-
-
 </body>
 <script type="text/javascript"> window.onload = alertName; </script>
 </html>

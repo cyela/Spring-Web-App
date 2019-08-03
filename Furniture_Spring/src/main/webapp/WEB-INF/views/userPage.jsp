@@ -1,7 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -20,7 +19,7 @@
 	response.setHeader("Expires", "0"); // Proxies.
 	
 	if(session.getAttribute("user")==null){
-		response.sendRedirect("${loginrURL}");
+		response.sendRedirect("${loginrURL}"); 
 	}
 	%>
 </head>
@@ -41,12 +40,12 @@
 	if (Msg1 == "added")
 	{
 		 function alertName(){
-		 alert("Item has been successfully added to cart");
+			 alert("Item has been successfully added to cart");
 		 }
 	} else if (Msg1 == "exists")
 	{
 		 function alertName(){
-		 alert("Already in cart\nYou can change quantity by visiting View Cart Page\nThank you");
+		 	alert("Already in cart\nYou can change quantity by visiting View Cart Page\nThank you");
 		 }
 	}    
 	var Msg ='<%=request.getAttribute("cart")%>';
@@ -54,28 +53,28 @@
 	   {
 			 function alertName(){
 				 
-			 alert("Your order has been placed successfully");
+			 	alert("Your order has been placed successfully");
 			 }
 			 
 	   } else if (Msg == "empty")
 	{
 		 function alertName(){
-		 alert("Sorry your cart is empty");
+		 	alert("Sorry your cart is empty");
 		 }
 	} 
 	    
 	 var Msg ='<%=request.getAttribute("contact")%>';
 	    if (Msg == "contact") {
-	 function alertName(){
-	 alert("Thank you for contacting us");
-	 } 
+		 function alertName(){
+		 	alert("Thank you for contacting us");
+		 } 
 	 }
 	    
 	    var Msg ='<%=request.getAttribute("address")%>';
 	    if (Msg == "address") {
-	 function alertName(){
-	 alert("Address updated successfully");
-	 } 
+		 function alertName(){
+		 	alert("Address updated successfully");
+		 } 
 	 }  
    
 </script> 
@@ -159,13 +158,10 @@
 </style>
 
 <div class="container">
-    
-<div id="products" class="row list-group"> 
+  <div id="products" class="row list-group"> 
     <c:forEach items="${listProduct}" var="prod">   
-    
         <div class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
-               
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
                         ${prod.productname}</h4>
@@ -184,12 +180,9 @@
                 </div>
             </div>
         </div>
-         
      </c:forEach>
    </div>
 </div>
-
-
 </body>
 <script type="text/javascript"> window.onload = alertName; </script>
 </html>

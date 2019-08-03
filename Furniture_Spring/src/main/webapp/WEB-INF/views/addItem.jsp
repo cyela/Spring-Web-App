@@ -12,7 +12,7 @@
 <title>Home</title>
 </head>
 <body>
-  <div  class="container">
+<div  class="container">
   <nav  class="navbar navbar-inverse">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
@@ -21,34 +21,33 @@
 			<spring:url value="/user/addProductView" var="adpURL"></spring:url>
 		    <li><a href="${adpURL}" style="float:right">Add Product</a></li>
 		    <spring:url value="/user/logout" var="logURL"></spring:url>
-		    <li><a href="${logURL}" style="float:right">Log out</a></li> 
+		    <li><a href="${logURL}" style="float:right">Log out</a></li>  
      </ul>
     </div>
-</nav>
+ </nav>
 </div>
 <div  class="container" style="padding:48px 16px">
-<div class="form-container">
-<spring:url value="/user/addProduct" var="addURL" />
-<form:form class="form-horizontal" modelAttribute="productform" method="POST" action="${addURL}" >
-    <div  class="container">
-      <h4 id="add">Add Products </h4>
-      <hr>
-        	<div   class="row">
-                  <div class="form-group">
-        	        <div class=" col-sm-4 col-md-24">
-            			      <form:input type="text" class="form-control"  path="productname" placeholder="Name"/><br>
-            			      <form:textarea rows="5" class="form-control" path="description" placeholder="Description" /><br>
-            			      <form:input type="number" class="form-control" path="productprice" placeholder="Price"/><br>
-            			      <form:input type="number" class="form-control" path="quantity" placeholder="Quantity" /><br>
-            			      <input type="submit" class="btn btn-primary btn-block" value="ADD" />
-            			</div>
-                </div>
-           </div>
-		<hr>
-        </div>
- </form:form>
+	<div class="form-container">
+	<spring:url value="/user/addProduct" var="addURL" />
+		<form:form class="form-horizontal" modelAttribute="productform" method="POST" action="${addURL}" >
+		    <div  class="container">
+		      <h4 id="add">Add Products </h4>
+		      <hr>
+		        	<div   class="row">
+		                  <div class="form-group">
+		        	        <div class=" col-sm-4 col-md-24">
+		            			      <form:input type="text" class="form-control"  path="productname" placeholder="Name"/><br>
+		            			      <form:textarea rows="5" class="form-control" path="description" placeholder="Description" /><br>
+		            			      <form:input type="number" class="form-control" path="productprice" placeholder="Price"/><br>
+		            			      <form:input type="number" class="form-control" path="quantity" placeholder="Quantity" /><br>
+		            			      <input type="submit" class="btn btn-primary btn-block" value="ADD" />
+		            			</div>
+		                </div>
+		           </div>
+				<hr>
+		        </div>
+		 </form:form>
+	</div>
 </div>
-  </div>
-
 </body>
 </html>

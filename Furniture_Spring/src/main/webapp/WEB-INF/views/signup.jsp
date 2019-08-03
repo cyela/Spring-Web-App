@@ -13,7 +13,7 @@
 </head>
 <body background="images/bg1.jpg">
 <script type="text/javascript">
-
+ 
   function checkForm(form)
   {
     
@@ -66,7 +66,6 @@
     </div>
    </div>
 </nav>
-
 <p> Create your account: </p>
 	<spring:url value="/user/savedetails" var="signURL" />
 	<form:form class="form-horizontal border border-success"   modelAttribute="usersignform" method="post" action="${signURL}" onsubmit="return checkForm(this);" >
@@ -118,8 +117,6 @@
 						<span id="password_strength"></span>			   
 				   </div>
 			    </div>
-	    
-		
 		<script type="text/javascript">
 		    function CheckPasswordStrength(password) {
 		        var password_strength = document.getElementById("password_strength");
@@ -178,9 +175,9 @@
 		        password_strength.style.color = color;
 		    }
 		</script>
-			      <div class="col-sm-offset-2 col-sm-10">
-			        <input type="submit"  value="Sign up" class="btn btn-default">
-			      </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit"  value="Sign up" class="btn btn-default">
+    </div>
 </form:form>
 </body>
 </html>

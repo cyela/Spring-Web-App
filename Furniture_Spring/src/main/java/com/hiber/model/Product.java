@@ -1,18 +1,17 @@
 package com.hiber.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
 @Entity
 public class Product {
-	
+
 	@Id
-	String productId;
-	String description,productname,
-	productprice,quantity;
-	
+	private String productId;
+	private String description;
+	private String productname;
+	private String productprice;
+	private String quantity;
 
 	public String getProductId() {
 		return productId;
@@ -54,13 +53,10 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-
-	
-
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", description=" + description + ", productname=" + productname
-				+ ", productprice=" + productprice + ", quantity=" + quantity + ", prodImage="  + "]";
+				+ ", productprice=" + productprice + ", quantity=" + quantity + ", prodImage=" + "]";
 	}
 
 	public Product(String productId, String description, String productname, String productprice, String quantity) {
@@ -70,7 +66,7 @@ public class Product {
 		this.productname = productname;
 		this.productprice = productprice;
 		this.quantity = quantity;
-		
+
 	}
 
 	public Product() {
@@ -81,7 +77,4 @@ public class Product {
 		super();
 		this.productId = productId;
 	}
-
-
-	
 }

@@ -20,18 +20,12 @@
     <ul class="nav navbar-nav">
    <spring:url value="/user/signup" var="signURL"></spring:url>
       <li style="float:right;" ><a href="${signURL}">Sign Up</a></li>
-     
     </ul>
    </div>
 </nav>
-<div class="jumbotron text-center" style="margin-bottom: 0px;
-    opacity: 0.6;
-    color: #fff;
-    background: #000 ;" >
-
+<div class="jumbotron text-center" style="margin-bottom: 0px;opacity: 0.6;color: #fff;background: #000 ;" >
 	  <h1>Furniture Mart</h1> 
 	  <p>Its home for furniture products</p> 
- 
      <form class="form-inline">
      <div class="input-group">
 	        <div class="form-group">        
@@ -41,9 +35,7 @@
 			</div>
 			</div>
       </div>
-   
   </form>
 </div>
-
 </body>
 </html>

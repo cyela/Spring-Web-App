@@ -11,11 +11,9 @@
 <link rel="stylesheet"  href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <title>View Cart </title>
 </head>
 <body>
-
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
@@ -32,11 +30,9 @@
 		    <li><a href="${logURL}" style="float:right">Log out</a></li> 
      </ul>
     </div>
-</nav>
+  </nav>
 
 <div class="container">
-
-    
     <p> Click to continue your shopping</p>
 	<br >
 	<spring:url value="/user/home" var="homeURL" ></spring:url>
@@ -79,9 +75,10 @@
 	       				  var total=qunatity*price;
 	       				sumto=sumto+total;
        				  </script>
-                      <td data-th="Subtotal" class="text-center"><script type="text/javascript">
-															        document.write(total);
-															      </script>
+                      <td data-th="Subtotal" class="text-center">
+                      <script type="text/javascript">
+				        document.write(total);
+				      </script>
 				      </td>
       				  <td class="actions" data-th="">
       				  	<input type="hidden" name="newprodId" value="${prod.productId}" />
@@ -96,27 +93,29 @@
 						 <input type="submit" name="submit" class="btn btn-info btn-sm" value="delete " />
 	                </form:form>
       			</td>  
-                      	
-				
 			</tr>
 		 </c:forEach>
 		</tbody>
 		<tfoot>
 			<tr class="visible-xs">
-          				 <td class="text-center"><strong><script type="text/javascript">
-															        document.write(sumto);
-															      </script></strong>
-						</td>
+       		 <td class="text-center"><strong>
+       		     <script type="text/javascript">
+		       			 document.write(sumto);
+		         </script></strong>
+			 </td>
 			</tr>
 			<tr>
 				<td colspan="2" class="hidden-xs"></td>
-           				<td class="hidden-xs text-center"><strong><script type="text/javascript">
-															        document.write(sumto);
-															      </script></strong></td>
-            			   <td>
-            			   <spring:url value="/user/place" var="placeURL" />
-            			   <a href="${placeURL}" class="btn btn-primary btn-block">Checkout 
-            			   <i class="fa fa-angle-right"></i></a></td>
+    			<td class="hidden-xs text-center"><strong>
+     				<script type="text/javascript">
+				       document.write(sumto);
+				     </script></strong>
+				</td>
+     			<td>
+         			   <spring:url value="/user/place" var="placeURL" />
+         			   <a href="${placeURL}" class="btn btn-primary btn-block">Checkout 
+         			   <i class="fa fa-angle-right"></i></a>
+            	</td>
 			</tr>
 		</tfoot>
 	</table>

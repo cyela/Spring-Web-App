@@ -6,27 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hiber.model.Address;
+import com.hiber.model.Admin;
+import com.hiber.model.Bufcart;
+import com.hiber.model.OrderPlaced;
+import com.hiber.model.Product;
+import com.hiber.model.User;
 import com.project.dao.UserDao;
-import com.hiber.model.*;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	UserDao userDao;
-	
+	private UserDao userDao;
+
 	@Autowired
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-
 
 	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		userDao.addUser(user);
 	}
-
 
 	@Override
 	public User findUserBy(String email) {
@@ -40,14 +43,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.listAllProducts();
 	}
 
-	
 	@Override
 	public void addAddress(Address addr) {
 		// TODO Auto-generated method stub
 		userDao.addAddress(addr);
 	}
-
-
 
 	@Override
 	public Address getAddress(String email) {
@@ -61,13 +61,11 @@ public class UserServiceImpl implements UserService {
 		userDao.addToCart(bufcart);
 	}
 
-
 	@Override
 	public Product getProduct(String prodId) {
 		// TODO Auto-generated method stub
 		return userDao.getProduct(prodId);
 	}
-
 
 	@Override
 	public List<Bufcart> listAllBufCart(String email) {
@@ -81,7 +79,6 @@ public class UserServiceImpl implements UserService {
 		userDao.removeItem(bufcartId);
 	}
 
-
 	@Override
 	public void placeOrder(OrderPlaced opd) {
 		// TODO Auto-generated method stub
@@ -94,13 +91,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.findAdminBy(email);
 	}
 
-
 	@Override
 	public List<User> listAllUser() {
 		// TODO Auto-generated method stub
 		return userDao.listAllUser();
 	}
-
 
 	@Override
 	public List<Admin> listAllAdmin() {
@@ -108,13 +103,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.listAllAdmin();
 	}
 
-
 	@Override
 	public void addProduct(Product prod) {
 		// TODO Auto-generated method stub
 		userDao.addProduct(prod);
 	}
-
 
 	@Override
 	public void editProduct(Product prod) {
@@ -122,13 +115,10 @@ public class UserServiceImpl implements UserService {
 		userDao.editProduct(prod);
 	}
 
-
 	@Override
 	public void delProduct(String prod) {
 		// TODO Auto-generated method stub
 		userDao.delProduct(prod);
 	}
-
-	
 
 }

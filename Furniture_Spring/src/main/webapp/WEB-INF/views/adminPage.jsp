@@ -21,44 +21,43 @@
 			<spring:url value="/user/addProductView" var="adpURL"></spring:url>
 		    <li><a href="${adpURL}" style="float:right">Add Product</a></li>
 		    <spring:url value="/user/logout" var="logURL"></spring:url>
-		    <li><a href="${logURL}" style="float:right">Log out</a></li> 
+		    <li><a href="${logURL}" style="float:right">Log out</a></li>  
      </ul>
     </div>
 </nav>
 </div>
 <div  class="container" style="padding:48px 16px">
 <div class="container">
-<div id="products" class="row list-group"> 
-    <c:forEach items="${listAdminProduct}" var="prod">   
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        ${prod.productname}</h4>
-                    <p class="group inner list-group-item-text">
-                        ${prod.description}</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                ${prod.productprice}</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                         <spring:url value="/user/editproduct/${prod.productId}" var="editURL" />
-                            <a class="btn btn-primary" href="${editURL}">Edit Items</a>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                         <spring:url value="/user/delproduct/${prod.productId}" var="delURL" />
-                            <a class="btn btn-primary" href="${delURL}">Remove</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-         
-     </c:forEach>
-   </div>
+	<div id="products" class="row list-group"> 
+	    <c:forEach items="${listAdminProduct}" var="prod">   
+	        <div class="item  col-xs-4 col-lg-4">
+	            <div class="thumbnail">
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">
+	                        ${prod.productname}</h4>
+	                    <p class="group inner list-group-item-text">
+	                        ${prod.description}</p>
+	                    <div class="row">
+	                        <div class="col-xs-12 col-md-6">
+	                            <p class="lead">
+	                                ${prod.productprice}</p>
+	                        </div>
+	                        <div class="col-xs-12 col-md-6">
+	                         <spring:url value="/user/editproduct/${prod.productId}" var="editURL" />
+	                            <a class="btn btn-primary" href="${editURL}">Edit Items</a>
+	                        </div>
+	                        <div class="col-xs-12 col-md-6">
+	                         <spring:url value="/user/delproduct/${prod.productId}" var="delURL" />
+	                            <a class="btn btn-primary" href="${delURL}">Remove</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	         
+	     </c:forEach>
+	   </div>
+	</div>
 </div>
-  </div>
-
 </body>
 </html>

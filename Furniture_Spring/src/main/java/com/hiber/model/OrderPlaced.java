@@ -1,15 +1,17 @@
 package com.hiber.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class OrderPlaced {
-	
+
 	@Id
 	private int orderId;
-	private String email,totalCost,orderDate,orderStatus;
+	private String email;
+	private String totalCost;
+	private String orderDate;
+	private String orderStatus;
 
 	public int getOrderId() {
 		return orderId;
@@ -63,5 +65,4 @@ public class OrderPlaced {
 	public OrderPlaced() {
 		super();
 	}
-	
 }

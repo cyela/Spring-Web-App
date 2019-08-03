@@ -1,6 +1,5 @@
 package com.hiber.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,102 +7,95 @@ import javax.persistence.Id;
 @Entity
 public class Bufcart {
 
-@Id
-private int bufcartId;
+	@Id
+	private int bufcartId;
 
-@Column(nullable = true)
-private int orderId;
-public int getOrderId() {
-	return orderId;
-}
+	@Column(nullable = true)
+	private int orderId;
 
-public int getBufcartId() {
-	return bufcartId;
-}
+	public int getOrderId() {
+		return orderId;
+	}
 
-public void setBufcartId(int bufcartId) {
-	this.bufcartId = bufcartId;
-}
+	public int getBufcartId() {
+		return bufcartId;
+	}
 
-private String ProductId,ProductName, email, DateAdded,quantity,price;
+	public void setBufcartId(int bufcartId) {
+		this.bufcartId = bufcartId;
+	}
 
-public void setOrderId(int orderId) {
-	this.orderId = orderId;
-}
+	private String ProductId, ProductName, email, DateAdded, quantity, price;
 
-public String getProductName() {
-	return ProductName;
-}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
-public void setProductName(String productName) {
-	ProductName = productName;
-}
+	public String getProductName() {
+		return ProductName;
+	}
 
-public String getPrice() {
-	return price;
-}
+	public void setProductName(String productName) {
+		this.ProductName = productName;
+	}
 
-public void setPrice(String price) {
-	this.price = price;
-}
+	public String getPrice() {
+		return price;
+	}
 
-public String getQuantity() {
-	return quantity;
-}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-public void setQuantity(String quantity) {
-	this.quantity = quantity;
-}
+	public String getQuantity() {
+		return quantity;
+	}
 
-public String getProductId() {
-	return ProductId;
-}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
 
-public void setProductId(String productId) {
-	ProductId = productId;
-}
+	public String getProductId() {
+		return ProductId;
+	}
 
-public String getEmail() {
-	return email;
-}
+	public void setProductId(String productId) {
+		this.ProductId = productId;
+	}
 
-public void setEmail(String email) {
-	this.email = email;
-}
+	public String getEmail() {
+		return email;
+	}
 
-public String getDateAdded() {
-	return DateAdded;
-}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public void setDateAdded(String dateAdded) {
-	DateAdded = dateAdded;
-}
+	public String getDateAdded() {
+		return DateAdded;
+	}
 
+	public void setDateAdded(String dateAdded) {
+		this.DateAdded = dateAdded;
+	}
 
+	public Bufcart(String productId, String productName, String email, String dateAdded, String quantity,
+			String price) {
+		super();
+		this.ProductId = productId;
+		this.ProductName = productName;
+		this.email = email;
+		this.DateAdded = dateAdded;
+		this.quantity = quantity;
+		this.price = price;
+	}
 
+	public Bufcart() {
+		super();
+	}
 
-
-public Bufcart(String productId, String productName, String email, String dateAdded, String quantity, String price) {
-	super();
-	ProductId = productId;
-	ProductName = productName;
-	this.email = email;
-	DateAdded = dateAdded;
-	this.quantity = quantity;
-	this.price = price;
-}
-
-public Bufcart() {
-	super();
-}
-
-public Bufcart(String email) {
-	super();
-	this.email = email;
-}
-
-
-	
-	
-	
+	public Bufcart(String email) {
+		super();
+		this.email = email;
+	}
 }
